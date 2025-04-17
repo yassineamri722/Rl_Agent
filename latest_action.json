@@ -1,1 +1,1 @@
-{"action": {"ac": 1, "ac_temp": 24, "window": 0}, "reward": -0.10001239776611329, "indoor_temperature": 24.0, "outdoor_temperature": 22.01, "rain": false, "humidity": 20, "energy_saved_percentage": 0, "timestamp": 1744910403.8696003}
+{"action": {"ac": 1, "ac_temp": 24, "window": 0}, "reward": -0.1, "indoor_temperature": 24.0, "outdoor_temperature": 20.83, "rain": false, "humidity": 27, "energy_saved_percentage": 0, "timestamp": 1744914765.63421}
