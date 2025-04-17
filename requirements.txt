@@ -1,7 +1,6 @@
 fastapi
-uvicorn==0.27.0 
+uvicorn
 torch
-gymnasium
-gunicorn
-stable-baselines3
-numpy
+pydantic
+python-multipart
+requests
