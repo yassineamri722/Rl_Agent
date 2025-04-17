@@ -1,4 +1,0 @@
-{
-  "appService.defaultWebAppToDeploy": "/subscriptions/2a558623-7111-41d3-9f99-d8da0e92134e/resourceGroups/appsvc_linux_southafricanorth_basic/providers/Microsoft.Web/sites/rl-agent",
-  "appService.deploySubpath": "."
-}

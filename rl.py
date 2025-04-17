@@ -1,7 +1,5 @@
-# rl.py
 import time
 import torch
-import json
 from environment import ACWindowEnv
 from environment import get_outdoor_weather
 from model import DQN
@@ -12,7 +10,7 @@ model = DQN(3, 14)
 model.load_state_dict(torch.load("dqn_model.pth"))
 model.eval()
 
-# Define a function to perform RL actions and save results
+# Define a function to perform RL actions
 def perform_rl_action():
     # Initialize state
     state = env.reset()[0]
@@ -51,20 +49,6 @@ def perform_rl_action():
         print(f"Indoor temperature: {temp_now:.2f}°C")
         print(f"Outdoor temperature: {outdoor_temp:.2f}°C" if outdoor_temp is not None else "Outdoor temperature: Not available")
         print(f"Outdoor rain: {'Yes' if outdoor_rain else 'No'}")
-
-        # Save the latest action and information to a JSON file
-        with open("latest_action.json", "w") as f:
-            json.dump({
-                "action": env.actions[action_idx],
-                "reward": reward,
-                "indoor_temperature": round(float(temp_now), 2),
-                "outdoor_temperature": round(float(outdoor_temp), 2) if outdoor_temp else None,
-                "rain": env.outdoor_rain,
-                "humidity": env.outdoor_humidity,
-                "energy_saved_percentage": 100 * (1 - (1 if env.actions[action_idx]["ac"] == 1 else 0)),
-                "timestamp": time.time()  # Add timestamp for freshness check
-            }, f)
-            print("Action saved to latest_action.json")  # Debugging print
 
         # Update the state
         state = next_state
