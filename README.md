@@ -1,37 +1,47 @@
 # 🧠 RL_Agent
 
-Ce projet implémente un agent d’apprentissage par renforcement (RL) avec une API FastAPI et une interface Streamlit pour tester et visualiser les performances du modèle.
+This project implements a Reinforcement Learning (RL) agent with a FastAPI backend and a Streamlit-based dashboard for testing and visualization.
+
+The agent simulates smart energy management in a house by selecting from **13 possible actions** to maintain comfortable temperature while optimizing energy cost.
+
+## 🧠 About the RL Agent
+
+The RL agent is designed to intelligently control the environment with actions like:
+
+- Turn **ON/OFF Air Conditioner**
+- Open/Close **windows**
+- Adjust the **AC temperature** from 19°C to 31°C
+
+It learns to take optimal actions based on the internal and external temperature states.
 
 ---
 
-## 🚀 1ère Approche — Utiliser l'API déployée sur Azure
+## 🚀 Approach 1 — Use the Deployed API on Azure (CI/CD)
 
-L’API FastAPI est automatiquement déployée sur Azure via GitHub Actions (CI/CD).
+The FastAPI backend is automatically deployed to **Azure Web Services** using GitHub Actions (CI/CD).
 
-🔗 **Lien public Azure (API uniquement)** :  
+🔗 **Public Azure Link (API only)**:  
 👉 [https://myrl-hpgxb5gaezembecs.canadacentral-01.azurewebsites.net](https://myrl-hpgxb5gaezembecs.canadacentral-01.azurewebsites.net)
 
-### 📘 Interface Swagger :
+📘 **Swagger Interface**:  
 [https://myrl-hpgxb5gaezembecs.canadacentral-01.azurewebsites.net/docs](https://myrl-hpgxb5gaezembecs.canadacentral-01.azurewebsites.net/docs)
 
-✅ **Dashboard Streamlit disponible localement** :  
-Même si le frontend n’est pas déployé sur Azure, vous pouvez le lancer **en local** avec :
+✅ **Dashboard (Streamlit) locally**:  
+You can run the dashboard locally to interact with the deployed API:
 
 ```bash
 streamlit run Dashboard.py
 ```
 
-📁 Le fichier `Dashboard.py` est déjà inclus dans le dépôt `RL_Agent`, vous n'avez rien à télécharger de plus.
-
-> Le dashboard communique directement avec l'API Azure ou locale selon la configuration.
+> `Dashboard.py` is already in the repo and communicates directly with the deployed API.
 
 ---
 
-## 💻 2ème Approche — Exécuter localement (API + Dashboard)
+## 💻 Approach 2 — Run Everything Locally (API + Dashboard)
 
-Vous pouvez cloner le projet et lancer à la fois l’API FastAPI **et** le dashboard en local.
+Clone the repo and run both the backend and the dashboard on your local machine.
 
-### 🔧 Étapes d’installation
+### 🛠️ Setup
 
 ```bash
 git clone https://github.com/yassineamr1/RL_Agent.git
@@ -40,30 +50,26 @@ pip install -r requirements.txt
 python main.py
 ```
 
-L’API sera disponible à : [http://localhost:8000/docs](http://localhost:8000/docs)
+API available at: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-### ▶️ Lancer le Dashboard Streamlit
+### ▶️ Run the Streamlit Dashboard
 
 ```bash
 streamlit run Dashboard.py
 ```
 
-> Le dashboard accède à l'API locale disponible sur `localhost:8000`.
-
 ---
 
-## 🐳 3ème Approche — Utiliser Docker
+## 🐳 Approach 3 — Use Docker
 
-Vous pouvez utiliser Docker pour exécuter l’API sans avoir à installer les dépendances Python.
-
-### 📥 Option 1 : Utiliser l’image DockerHub
+### 📦 Option 1: Pull from DockerHub
 
 ```bash
 docker pull yassineamri/rl_agent
 docker run -p 8000:8000 yassineamri/rl_agent
 ```
 
-### 📥 Option 2 : Construire l’image depuis le repo GitHub
+### 🛠️ Option 2: Build the Image from GitHub
 
 ```bash
 git clone https://github.com/yassineamr1/RL_Agent.git
@@ -72,26 +78,25 @@ docker build -t rl_agent .
 docker run -p 8000:8000 rl_agent
 ```
 
-L’API FastAPI sera accessible ici : [http://localhost:8000/docs](http://localhost:8000/docs)
-
-### ▶️ Lancer le Dashboard (toujours localement)
+Then run the dashboard locally as before:
 
 ```bash
 streamlit run Dashboard.py
 ```
 
-> Le Dashboard reste exécuté en local mais peut pointer vers l'API en local (Docker) ou en ligne (Azure).
+> The dashboard can talk to the API running inside the Docker container.
 
 ---
 
-## 📂 Structure du projet
+## 📁 Project Structure
 
 ```
 RL_Agent/
-├── Dashboard.py           ← Interface utilisateur Streamlit
-├── training/           ← Entraînement de l’agent RL
-├── main.py             ← Backend API (FastAPI)
+├── Dashboard.py           ← Streamlit UI
+├── training/              ← RL agent logic and training
+├── main.py                ← FastAPI backend
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
 ```
+
